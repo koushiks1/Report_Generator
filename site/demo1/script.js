@@ -177,6 +177,6 @@ doc.autoTable({ html: '#mytable' })
 
         // doc.addPage();
 
-        doc.save("qwetry.pdf")
+        doc.save("Report.pdf")
     })
 }
