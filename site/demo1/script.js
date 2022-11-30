@@ -1,7 +1,11 @@
 
 
 var doc = new jsPDF()
-
+var countimg = 0;
+var imgdata='';
+var imgdata1='';
+var imgdata2='';
+var imgdata3='';
 
 var d=1;
 function count() {
@@ -11,6 +15,56 @@ function count() {
 function count1() {
     d--;
 }
+
+function encode(image) {
+    countimg++;
+    console.log(count);
+    var img=image.files[0];
+    var file = new FileReader();
+    file.onloadend = function() {
+        imgdata=file.result
+        console.log(file.result)
+    }
+    file.readAsDataURL(img)
+}
+function encode1(image) {
+    countimg++;
+    console.log(count);
+    var img=image.files[0];
+    var file = new FileReader();
+    file.onloadend = function() {
+        imgdata1=file.result
+        console.log(file.result)
+    }
+    file.readAsDataURL(img)
+}
+function encode2(image) {
+    countimg++;
+    console.log(count);
+    var img=image.files[0];
+    var file = new FileReader();
+    file.onloadend = function() {
+        imgdata2=file.result
+        console.log(file.result)
+    }
+    file.readAsDataURL(img)
+}
+function encode3(image) {
+    countimg++;
+    console.log(count);
+    var img=image.files[0];
+    var file = new FileReader();
+    file.onloadend = function() {
+        imgdata3=file.result
+        console.log(file.result)
+    }
+    file.readAsDataURL(img)
+}
+
+
+
+
+
 
 // console.log(d);
 function dpdf(){
@@ -109,7 +163,7 @@ doc.autoTable({ html: '#mytable' })
             columnWidth: 60.5,
             }       
             },
-            styles: {overflow: 'linebreak', columnWidth: '100', font: 'arial', fontSize: 10, cellPadding: 4, overflowColumns: 'linebreak'},
+            //styles: {overflow: 'linebreak', columnWidth: '100', font: 'arial', fontSize: 10, cellPadding: 4, overflowColumns: 'linebreak'},
             //margin: {bottom: 20},
             tableLineColor: [0, 0, 0],
             tableLineWidth: 0.5,
@@ -164,18 +218,41 @@ doc.autoTable({ html: '#mytable' })
             // maxWidth: doc.internal.pageSize.width-30,
             // align: 'justify'
             // })
+            info1 = info1.replace(/^\s*[\r\n]/gm, ""); //empty lines
+            var lines = info1.split(/\r|\r\n|\n/);   //counting lines in text area
+            var count = lines.length;
+            var h2 = (doc.internal.getLineHeight() * 0.3527777778 * count) - 3
+            h2+=25;
 
+
+            doc.addImage(imgdata,25,h2+25,70,70)
+            doc.addImage(imgdata1,115,h2+25,70,70)
+            doc.addImage(imgdata2,25,h2+105,70,70)
+            doc.addImage(imgdata3,115,h2+105,70,70)
+
+            // if(countimg>0)
+            // {
+            //     doc.addImage(imgdata,25,h2+25,70,70)
+            // }
+            
+            // if(countimg>1)
+            // {
+            //     doc.addImage(imgdata1,115,h2+25,70,70)
+            // }
+            
+            // if(countimg>2)
+            // {
+            //     doc.addImage(imgdata2,25,h2+105,70,70)
+            // }
+            
+            // if(countimg>3)
+            // {
+            //     doc.addImage(imgdata3,115,h2+105,70,70)
+            // }
 
         // pageHeight= doc.internal.pageSize.height;
 
         
-        // if (y >= pageHeight)
-        // {
-        // doc.addPage();
-        // y = 0 // Restart height position
-        // }
-
-        // doc.addPage();
 
         doc.save("Report.pdf")
     })

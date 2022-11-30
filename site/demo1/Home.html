@@ -149,10 +149,35 @@
               previousLength = newLength;
               }
             </script>
+
+
+            <div style="margin-top: 10px; margin-bottom: 10px;">
+            <div style="margin: 0px 0px 5px 15px;">
+              <label style="margin-right: 10px" class="u-label"><strong>IMAGE 1</strong></label>
+              <input type="file" onchange="encode(this)">
+            </div>
+            <div style="margin: 0px 0px 5px 15px;">
+              <label style="margin-right: 10px" class="u-label"><strong>IMAGE 2</strong></label>
+              <input type="file" onchange="encode1(this)">
+            </div>
+            <div style="margin: 0px 0px 5px 15px;">
+              <label style="margin-right: 10px" class="u-label"><strong>IMAGE 3</strong></label>
+              <input type="file" onchange="encode2(this)">
+            </div>
+            <div style="margin: 0px 0px 5px 15px;">
+              <label style="margin-right: 10px" class="u-label"><strong>IMAGE 4</strong></label>
+              <input type="file" onchange="encode3(this)">
+            </div>
+          </div>
+
+
             <div style="margin:0px 0px 20px 0px" class="u-form-group u-form-textarea u-form-group-8">
               <label for="textarea-0758" class="u-label">Info about Resource person</label>
               <textarea rows="4" cols="50" id="info" name="textarea-1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"></textarea>
             </div>
+
+            
+            <br>
               
             
             <div>
@@ -171,39 +196,10 @@
             <br>
           </div>
           </div>
-            <!-- <div style="margin-left:15px ;">
-            <input id="t1" type="text" placeholder="Topic" name="mytext[]">
-            <input id="d1" type="text" placeholder="Duration" name="mytext[]">
-            <input id="r1" type="text" placeholder="Resource Person" name="mytext[]" style="margin-bottom:5px ;">
-            </div>
-            <div style="margin-left:15px ;" class="container1">
-            <input id="t2" type="text" placeholder="Topic" name="mytext[]">
-            <input id="d2" type="text" placeholder="Duration" name="mytext[]">
-            <input id="r2" type="text" placeholder="Resource Person" name="mytext[]" style="margin-bottom:5px ;">
-            <button onclick="delete1()" class="delete">Delete</button>
-          </div>
-            <div style="margin-left:15px ;" class="container1">
-            <input id="t3" type="text" placeholder="Topic" name="mytext[]">
-            <input id="d3" type="text" placeholder="Duration" name="mytext[]">
-            <input id="r3" type="text" placeholder="Resource Person" name="mytext[]" style="margin-bottom:5px ;">
-            <button onclick="delete1()" class="delete">Delete</button>
-          </div> -->
           </div>
 
-            <!-- <div class="container1">
-               <button class="add_form_field">Add New Field &nbsp; 
-                <span style="font-size:16px; font-weight:bold;">+ </span>
-              </button>
-              <div>
-                <table id="mytable">
-                 <tr>
-                  <td><input type="text" name="mytext1[]"></td>
-                  <td><input type="text" name="mytext2[]"></td>
-                  <td><input type="text" name="mytext3[]"></td>
-                </tr>
-              </table>
-            </div>
-          </div> -->
+
+            
 
             <div class="u-align-left u-form-group u-form-submit">
               <button onclick="dpdf()" class="u-btn u-button-style" id="button">Download</button>
@@ -277,4 +273,5 @@
 
 
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
 </html>
