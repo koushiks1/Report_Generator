@@ -77,7 +77,7 @@ function dpdf(){
         var venue1 = document.getElementById("venue").value
         var np1 = document.getElementById("np").value
         var oc1 = document.getElementById("oc").value
-        var info1 = document.getElementById("info").value
+        //var info1 = document.getElementById("info").value
 
         
         doc.setFontSize(12)
@@ -167,7 +167,9 @@ function dpdf(){
 
 
             let bodyData = [];
+            let info1 = [];
             var k=0;
+            var z=0;
             for(let i = 0; i < d; i++)
             {
                 let rowData = [];
@@ -179,7 +181,10 @@ function dpdf(){
                         break;
                 }
                 bodyData.push(rowData);
+                info1.push(document.getElementsByName("info")[z].value)
+                z++;
             }
+            console.log(info1);
 
             for(let i=0;i<4;i++)
                 console.log(bodyData[k]);
@@ -258,23 +263,38 @@ doc.autoTable({ html: '#mytable' })
             doc.addPage();
             //console.log(doc.internal.pageSize.width-30)
             let regex = /  /g;
-            let result = info1.replace(regex, "\n");
-            doc.setFontSize(14).setFontType("normal").text(result,15,25,{
+            //let result = info1.replace(regex, "\n");
+            // doc.setFontSize(14).setFontType("normal").text(info1[0],15,25,{
+            // maxWidth: doc.internal.pageSize.width-30,
+            // });
+            // info1[0] = info1[0].replace(/(.{90})/g, "$1\n"); //empty lines
+            // var lines = info1[0].split(/\r|\r\n|\n/);   //counting lines in text area
+            // var count = lines.length;
+
+
+            var h3=25;
+            for(let i = 1; i <= d; i++)
+            {
+            //console.log(info1[i-1]);
+            doc.setFontSize(14).setFontType("normal").text(info1[i-1],15,h3,{
             maxWidth: doc.internal.pageSize.width-30,
+            //align:justify,
             });
-            info1 = info1.replace(/(.{90})/g, "$1\n"); //empty lines
-            var lines = info1.split(/\r|\r\n|\n/);   //counting lines in text area
+            info1[i-1] = info1[i-1].replace(/(.{90})/g, "$1\n"); //empty lines
+            var lines = info1[i-1].split(/\r|\r\n|\n/);   //counting lines in text area
             var count = lines.length;
-            var h2 = (doc.internal.getLineHeight() * 0.3527777778 * count) - 3
-            h2+=20;
+            h3 += (doc.internal.getLineHeight() * 0.3527777778 * count) + 5
+            }
+
+            //var h2 = (doc.internal.getLineHeight() * 0.3527777778 * count) - 3
+            //h2+=20;
+
+            doc.addImage(imgdata,25,h3+10,70,70)
+            doc.addImage(imgdata1,115,h3+10,70,70)
+            doc.addImage(imgdata2,25,h3+90,70,70)
+            doc.addImage(imgdata3,115,h3+90,70,70)
 
 
-            doc.addImage(imgdata,25,h2+25,70,70)
-            doc.addImage(imgdata1,115,h2+25,70,70)
-            doc.addImage(imgdata2,25,h2+105,70,70)
-            doc.addImage(imgdata3,115,h2+105,70,70)
-
-        // pageHeight= doc.internal.pageSize.height;
 
         
 
