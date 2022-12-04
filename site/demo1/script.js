@@ -17,8 +17,6 @@ function count1() {
 }
 
 function encode(image) {
-    countimg++;
-    console.log(count);
     var img=image.files[0];
     var file = new FileReader();
     file.onloadend = function() {
@@ -28,8 +26,6 @@ function encode(image) {
     file.readAsDataURL(img)
 }
 function encode1(image) {
-    countimg++;
-    console.log(count);
     var img=image.files[0];
     var file = new FileReader();
     file.onloadend = function() {
@@ -39,8 +35,6 @@ function encode1(image) {
     file.readAsDataURL(img)
 }
 function encode2(image) {
-    countimg++;
-    console.log(count);
     var img=image.files[0];
     var file = new FileReader();
     file.onloadend = function() {
@@ -50,8 +44,6 @@ function encode2(image) {
     file.readAsDataURL(img)
 }
 function encode3(image) {
-    countimg++;
-    console.log(count);
     var img=image.files[0];
     var file = new FileReader();
     file.onloadend = function() {
@@ -106,21 +98,72 @@ function dpdf(){
             align: 'center',
         })
 
+        // doc.setFontSize(14).setFont("verdana").setFontType("normal").text(des1,15,76 , {
+        //     maxWidth: doc.internal.pageSize.width-30,
+        //     align: 'justify'})
+
+        //     des1 = des1.replace(/^\s*[\r\n]/gm, ""); //empty lines
+        //     var lines = des1.split(/\r|\r\n|\n/);   //counting lines in text area
+        //     var count = lines.length;
+        //     var height = (doc.internal.getLineHeight() * 0.3527777778 * count) - 3
+
+
         doc.setFontSize(14).setFont("verdana").setFontType("normal").text(des1,15,76 , {
             maxWidth: doc.internal.pageSize.width-30,
-            align: 'justify'})
+            align: 'justify'
+        })
 
-            des1 = des1.replace(/^\s*[\r\n]/gm, ""); //empty lines
-            var lines = des1.split(/\r|\r\n|\n/);   //counting lines in text area
-            var count = lines.length;
-            var height = (doc.internal.getLineHeight() * 0.3527777778 * count) - 3
+
+        // des1 = des1.replace(/^\s*[\r\n]/gm, "");
+        des1 = des1.replace(/(.{90})/g, "$1\n");
+        var lines = des1.split(/\r|\r\n|\n/);
+        lines = lines.filter(function(entry) { return entry.trim() != ''; });        
+        console.log(lines);        
+        var count = lines.length;
+        console.log(count);
+        var height = (doc.internal.getLineHeight() * 0.3527777778 * count) - 3
+
+        console.log(height);
 
         doc.setFontSize(14).setFontType("normal").text("1.  Event Duration: "+et1,15,76+height+10)
-        doc.setFontSize(14).setFontType("normal").text("2.  Venue: "+venue1,15,76+height+15)
-        doc.setFontSize(14).setFontType("normal").text("3.  Total number of Participants: "+np1,15,76+height+20)
+        doc.setFontSize(14).setFontType("normal").text("2.  Venue: "+venue1,15,76+height+17)
+        doc.setFontSize(14).setFontType("normal").text("3.  Total number of Participants: "+np1,15,76+height+24)
 
 
         
+
+        var nfm1 = document.getElementById("nfm").value
+        var nff1 = document.getElementById("nff").value
+        var ntm1 = document.getElementById("ntm").value
+        var ntf1 = document.getElementById("ntf").value
+        var epm1 = document.getElementById("epm").value
+        var epf1 = document.getElementById("epf").value
+
+        var nop = document.getElementById("nop");
+        nop.innerHTML = "<tr><th rowspan='2'>Particulars</th><th colspan='2'>Number of Faculty</th><th colspan='2'>Non-Teaching Staff</th><th colspan='2'>External Participants</th></tr><tr><th>Male</th><th>Female</th><th>Male</th><th>Female</th><th>Male</th><th>Female</th></tr><tr><td>Number of Participants</td><td>"+nfm1+"</td><td>"+nff1+"</td><td>"+ntm1+"</td><td>"+ntf1+"</td><td>"+epm1+"</td><td>"+epf1+"</td></tr>"
+        doc.autoTable({ 
+        html: '#nop',
+        startY: 76+height+30,
+        startX: 15,
+        theme: 'plain',
+        styles: { 
+        halign:'center',
+        overflow: 'linebreak'
+        },
+        bodyStyles: {
+        lineWidth: 0.5,
+        lineColor: [0, 0, 0]
+        },
+        })
+        
+        var h1 = 76+height+50;
+        doc.setFontSize(14).setFontType("normal").text("\nStudents got exposure to : \n"+oc1,15,h1+10);        
+        oc1 = oc1.replace(/(.{70})/g, "$1\n"); //empty lines
+        var lines = oc1.split(/\r|\r\n|\n/);   //counting lines in text area
+        var count = lines.length;
+        var height1 = (doc.internal.getLineHeight() * 0.3527777778 * count) - 3
+        console.log(height1)
+        height1 += h1 +15
 
 
             let bodyData = [];
@@ -173,7 +216,7 @@ doc.autoTable({ html: '#mytable' })
             overflow: 'linebreak'
             },
             //cellPadding: Padding = 10,
-            startY: 76+height+30,
+            startY: height1+15,
             startX: 15,
             head: [['Topic', 'Duration', 'Resource-Person']],
             // margin: { top: 100 },
@@ -198,57 +241,38 @@ doc.autoTable({ html: '#mytable' })
         console.log(oc1);
 
 
-        doc.setFontSize(14).setFontType("normal").text("Students got exposure to : \n"+oc1,15,h1+5);
+        
 
-        oc1 = oc1.replace(/^\s*[\r\n]/gm, ""); //empty lines
-            var lines = oc1.split(/\r|\r\n|\n/);   //counting lines in text area
-            var count = lines.length;
-            var height1 = (doc.internal.getLineHeight() * 0.3527777778 * count) - 3
+        // oc1 = oc1.replace(/^\s*[\r\n]/gm, ""); //empty lines
+        //     var lines = oc1.split(/\r|\r\n|\n/);   //counting lines in text area
+        //     var count = lines.length;
+        //     var height1 = (doc.internal.getLineHeight() * 0.3527777778 * count) - 3
 
-            var h2 = h1+5+height1;
-            console.log(h2)
+        //     var h2 = h1+5+height1;
+        //     console.log(h2);
             // doc.setFontSize(14).setFont("verdana").setFontType("normal").text(info1,15,h2+20 , {
             // maxWidth: doc.internal.pageSize.width-30,
             // align: 'justify'})
 
 
             doc.addPage();
-            doc.setFontSize(14).setFontType("normal").text(info1,15,25);
-            // doc.setFontSize(14).setFont("verdana").setFontType("normal").text(info1,15,20 , {
-            // maxWidth: doc.internal.pageSize.width-30,
-            // align: 'justify'
-            // })
-            info1 = info1.replace(/^\s*[\r\n]/gm, ""); //empty lines
+            //console.log(doc.internal.pageSize.width-30)
+            let regex = /  /g;
+            let result = info1.replace(regex, "\n");
+            doc.setFontSize(14).setFontType("normal").text(result,15,25,{
+            maxWidth: doc.internal.pageSize.width-30,
+            });
+            info1 = info1.replace(/(.{90})/g, "$1\n"); //empty lines
             var lines = info1.split(/\r|\r\n|\n/);   //counting lines in text area
             var count = lines.length;
             var h2 = (doc.internal.getLineHeight() * 0.3527777778 * count) - 3
-            h2+=25;
+            h2+=20;
 
 
             doc.addImage(imgdata,25,h2+25,70,70)
             doc.addImage(imgdata1,115,h2+25,70,70)
             doc.addImage(imgdata2,25,h2+105,70,70)
             doc.addImage(imgdata3,115,h2+105,70,70)
-
-            // if(countimg>0)
-            // {
-            //     doc.addImage(imgdata,25,h2+25,70,70)
-            // }
-            
-            // if(countimg>1)
-            // {
-            //     doc.addImage(imgdata1,115,h2+25,70,70)
-            // }
-            
-            // if(countimg>2)
-            // {
-            //     doc.addImage(imgdata2,25,h2+105,70,70)
-            // }
-            
-            // if(countimg>3)
-            // {
-            //     doc.addImage(imgdata3,115,h2+105,70,70)
-            // }
 
         // pageHeight= doc.internal.pageSize.height;
 

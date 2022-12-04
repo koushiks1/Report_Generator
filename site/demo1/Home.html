@@ -71,7 +71,7 @@
   </script>
 
   </head>
-  <body class="u-body">
+  <body class="u-body" id="body">
     <div id="q1">
     <section class="u-clearfix u-section-1" id="sec-2f98">
       <div class="u-clearfix u-sheet u-sheet-1">
@@ -84,14 +84,14 @@
               <label for="select-1923" class="u-label">Department</label>
               <div class="u-form-select-wrapper">
                 <select id="dept" name="select" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-                  <option value="Civil Engineering">Civil Engineering</option>
+                  <option value="Information Science and Engineering">Information Science and Engineering</option>
                   <option value="Mechanical Engineering">Mechanical Engineering</option>
                   <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
                   <option value="Electronics and Communication Engineering">Electronics and Communication Engineering</option>
                   <option value="Industrial Engineering and Management">Industrial Engineering and Management</option>
                   <option value="Computer Science and Engineering">Computer Science and Engineering</option>
                   <option value="Electronics and Telecommunication Engineering">Electronics and Telecommunication Engineering</option>
-                  <option value="Information Science and Engineering">Information Science and Engineering</option>
+                  <option value="Civil Engineering">Civil Engineering</option>
                   <option value="Electronics and Instrumentation Engineering">Electronics and Instrumentation Engineering</option>
                   <option value="Medical Electronics Engineering">Medical Electronics Engineering</option>
                   <option value="Chemical Engineering">Chemical Engineering</option>
@@ -125,8 +125,26 @@
             </div>
             <div class="u-form-group u-form-group-6">
               <label for="text-7099" class="u-label">Number of Participants</label>
-              <input type="text" id="np" name="text-4" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+              <input type="text" placeholder="Total" id="np" name="text-4" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
             </div>
+            <div class="u-form-group u-form-group-6">
+              <label style="width: 200px; display: inline-block;" for="text-7099" class="u-label">Number of Faculty</label>
+              <input type="text" id="nfm" placeholder="Male" name="text-4" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" style="display: inline-block; width: 150px; margin-right: 10px; border-radius: 7px">
+              <input type="text" id="nff" placeholder="Female" name="text-4" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" style="display: inline-block; width: 150px; border-radius: 7px">     
+            </div>
+            <div class="u-form-group u-form-group-6">
+              <label style="width: 200px; display: inline-block;" for="text-7099" class="u-label" style="display: inline-block; width: 150px;">Non-Teaching Staff</label>
+              <input type="text" placeholder="Male" id="ntm" name="text-4" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" style="display: inline-block; width: 150px; margin-right: 10px; border-radius: 7px">
+              <input type="text" placeholder="Female" id="ntf" name="text-4" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" style="display: inline-block; width: 150px; border-radius: 7px">
+            </div>
+            <div class="u-form-group u-form-group-6">
+              <label style="width: 200px; display: inline-block;" for="text-7099" class="u-label">External Participants</label>
+              <input type="text" placeholder="Male" id="epm" name="text-4" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" style="display: inline-block; width: 150px; margin-right: 10px; border-radius: 7px">
+              <input type="text" placeholder="Female" id="epf" name="text-4" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" style="display: inline-block; width: 150px; border-radius: 7px">    
+            </div>
+
+            <table id="nop"></table>
+
             <div class="u-form-group u-form-textarea u-form-group-7">
               <label for="textarea-ffbc" class="u-label">Outcomes</label>
               <textarea onInput="handleInput(event)" rows="10" rows="4" cols="50" id="oc" name="textarea" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"></textarea>
@@ -173,7 +191,7 @@
 
             <div style="margin:0px 0px 20px 0px" class="u-form-group u-form-textarea u-form-group-8">
               <label for="textarea-0758" class="u-label">Info about Resource person</label>
-              <textarea rows="4" cols="50" id="info" name="textarea-1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"></textarea>
+              <textarea rows="4" cols="10" wrap="hard" id="info" name="textarea-1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"></textarea>
             </div>
 
             
@@ -202,7 +220,7 @@
             
 
             <div class="u-align-left u-form-group u-form-submit">
-              <button onclick="dpdf()" class="u-btn u-button-style" id="button">Download</button>
+              <button onclick="dpdf()" class="u-btn u-button-style" id="button">Generate Report</button>
             </div>
           </form>
         </div>
